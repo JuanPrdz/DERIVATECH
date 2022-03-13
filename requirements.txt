@@ -1,0 +1,11 @@
+# -- use: pip install -r requirements.txt
+
+# -- Data and calculations
+pandas
+numpy
+
+# -- Visualizations
+jupyter
+plotly
+
+# -- Connectivity 
