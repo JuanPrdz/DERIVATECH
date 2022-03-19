@@ -25,15 +25,13 @@ finfn = finfn.T
 
 
 # Se genera consultas en https://finviz.com/screener.ashx
-filters = ['sec_financial']
+filters = ['sec_financial','-marketcap']
 stock_list= Screener(filters=filters,table='Performance',order='Ticker',signal='New High')
 Data = pd.DataFrame.from_dict(stock_list.data)
 
 
-
-
-
-
+# Se generara una lista de tickets para analisis técnico 
+Tickets = Data['Ticker']
 
 
 
