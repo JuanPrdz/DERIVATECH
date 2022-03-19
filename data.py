@@ -7,64 +7,28 @@ import finviz
 import pandas as pd
 
 
-# Individual Stocks 
-Lista = ['AAPL','TSLA','MSFT']
-Clave = finviz.get_stock(Lista[0])
-Clave = pd.DataFrame.from_dict(Clave,orient='index')
-for i in range(1,len(Lista)):
-    A = finviz.get_stock(Lista[i])
-    B = pd.DataFrame.from_dict(A,orient='index',columns=(Lista[i]))
-    Clave = Clave.join(B)
+# Consultas de Claves indiciduales 
+lista = ["AAPL", "AMZN", "ES=F"]
+lista
+finfn = pd.DataFrame()
+for i in range(len(lista)):
+    my_dicto = finviz.get_stock(lista[i])
+    dff = pd.DataFrame(list(my_dicto.items()),columns = ['column1','column2'])
+    finfn[i] = dff.column2
 
-B.columns['A']
-
-
-# finviz.get_stock(Lista[i])
-
-# Clave = finviz.get_stock('AAPL')
-# Clave = pd.DataFrame.from_dict(Clave,orient='index')
+indiceD = finviz.get_stock(lista[0])
+indiceDF = pd.DataFrame(list(indiceD.items()),columns = ['column1','column2'])
+finfn = finfn.set_index(indiceDF.column1)
+finfn.columns = lista
+finfn = finfn.T
 
 
+# Se genera consultas en https://finviz.com/screener.ashx
+filters = ['sec_financial']
+stock_list= Screener(filters=filters,table='Performance',order='Ticker',signal='New High')
+Data = pd.DataFrame.from_dict(stock_list.data)
 
 
-
-# some_filters = [filters["PEG"]["Under 1"], filters["Exchange"]["AMEX"]]
-# stock_list = Screener(filters=some_filters, order="ticker")
-# print(stock_list)
-
-
-# stock_list = Screener()
-# print(type(stock_list))
-
-
-# stock = finviz.get_stock('AAPL')
-# print(stock)
-
-# stock['Price']
-
-# stock_list= Screener(table='Performance',order='Ticker',signal='New High',fil)
-# print(stock_list)
-
-# stock_list[3]
-# pd.DataFrame.from_dict(A,orient='index')
-# a = stock_list.get_charts(period='d', chart_type='c', size='l', ta='1')
-
-
-##-----------------------------------------------------------------------------------------------------------------------------------###
-# Indicidual Stocks 
-Clave = finviz.get_stock('AAPL')
-Clave = pd.DataFrame.from_dict(Clave,orient='index')
-
-pd.DataFrame(Clave)
-
-
-
-finviz.get_insider('АAPL')
-
-finviz.get_news('AAPL')
-
-
-finviz.get_analyst_price_targets('AAPL')
 
 
 
