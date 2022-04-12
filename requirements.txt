@@ -3,10 +3,18 @@
 # -- Data and calculations
 pandas
 numpy
-
+yahoofinancials
+plotly
+scipy
+datetime
+mplfinance
+yfinance
+matplotlib
+tkinter
 # -- Visualizations
 jupyter
 plotly
+
 
 # -- Connectivity 
 finviz~=1.4.4
