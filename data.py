@@ -5,71 +5,61 @@
 from finviz.screener import Screener
 import finviz
 import pandas as pd
+import Pruebas1 as iv
 
-
-# Individual Stocks 
-Lista = ['AAPL','TSLA','MSFT']
-Clave = finviz.get_stock(Lista[0])
-Clave = pd.DataFrame.from_dict(Clave,orient='index')
-for i in range(1,len(Lista)):
-    A = finviz.get_stock(Lista[i])
-    B = pd.DataFrame.from_dict(A,orient='index',columns=(Lista[i]))
-    Clave = Clave.join(B)
-
-B.columns['A']
-
-
-# finviz.get_stock(Lista[i])
-
-# Clave = finviz.get_stock('AAPL')
-# Clave = pd.DataFrame.from_dict(Clave,orient='index')
+seleccion = iv.a
 
 
 
 
-
-# some_filters = [filters["PEG"]["Under 1"], filters["Exchange"]["AMEX"]]
-# stock_list = Screener(filters=some_filters, order="ticker")
-# print(stock_list)
-
-
-# stock_list = Screener()
-# print(type(stock_list))
-
-
-# stock = finviz.get_stock('AAPL')
-# print(stock)
-
-# stock['Price']
-
-# stock_list= Screener(table='Performance',order='Ticker',signal='New High',fil)
-# print(stock_list)
-
-# stock_list[3]
-# pd.DataFrame.from_dict(A,orient='index')
-# a = stock_list.get_charts(period='d', chart_type='c', size='l', ta='1')
+librero = {'Basic Materials':'sec_basicmaterials',
+           'Communication Services':'sec_communicationservices',
+           'Consumer Cyclical':'sec_consumercyclical',
+           'Consumer Defensive':'sec_consumerdefensive',
+           'Energy':'sec_energy',
+           'Financial':'sec_financial',
+           'Healthcare':'sec_healthcare',
+           'Industrials':'sec_industrials',
+           'Real Estate':'sec_realestate',
+           'Techology':'sec_technology',
+           'Utilities':'sec_utilities'}
 
 
-##-----------------------------------------------------------------------------------------------------------------------------------###
-# Indicidual Stocks 
-Clave = finviz.get_stock('AAPL')
-Clave = pd.DataFrame.from_dict(Clave,orient='index')
+b = librero[seleccion]
 
-pd.DataFrame(Clave)
+# Consultas de Claves indiciduales 
+# my_dict = finviz.get_stock("AAPL")
+# df = pd.DataFrame(list(my_dict.items()),columns = ['column1','column2'])
+# indice=df["column1"]
+# indice=indice.values
+# lista = ["TSLA", "AMZN", "MSFT"]
+# finfn = pd.DataFrame(index=indice)
+
+# for i in range(len(lista)):
+#     my_dicto = finviz.get_stock(lista[i])
+#     dff = pd.DataFrame(list(my_dicto.items()),columns = ['column1','column2'])
+#     finfn[i] = dff['column2'].values
+# finfn.columns = lista
+# finfn = finfn.T
 
 
-
-finviz.get_insider('АAPL')
-
-finviz.get_news('AAPL')
-
-
-finviz.get_analyst_price_targets('AAPL')
+#-------------------------------------------------------------
 
 
 
+sectores = ['sec_basicmaterials','sec_communicationservices','sec_consumercyclical',
+            'sec_consumerdefensive','sec_energy','sec_financial','sec_healthcare',
+            'sec_industrials','sec_realestate','sec_technology','sec_utilities']
 
+# Se genera consultas en https://finviz.com/screener.ashx
+filters = [b,'marketcap']
+stock_list= Screener(filters=filters,table='Valuation',order='-marketcap',signal='New High')
+Data = pd.DataFrame.from_dict(stock_list.data)
+Data = Data[['Ticker','Market Cap']]
+Tickets = Data['Ticker']
 
+Data['Ticker'][0]
+# Se generara una lista de tickets para analisis técnico 
 
 
 
