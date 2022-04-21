@@ -35,7 +35,7 @@ sectores_usuario = ['Basic Materials','Communication Services'
 
 ventana.config(width=10)
 ventana.config(height=2)
-ventana.config(bg='light blue')
+
 
 
 # def display_selected(choice):
@@ -44,7 +44,7 @@ ventana.config(bg='light blue')
 
     
     
-etiqueta = tkinter.Label(ventana,text='Elige tu sector',bg='Blue')
+etiqueta = tkinter.Label(ventana,text='Elige tu sector')
 etiqueta.pack()
 
 
